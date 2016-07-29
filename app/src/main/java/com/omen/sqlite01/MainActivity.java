@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        SQLiteDatabase db=dbHelper.getWritableDatabase();
         switch (view.getId()){
             case R.id.activity_main_btn_create:
                 createDatabase();
@@ -41,13 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 addData();
                 break;
             case R.id.activity_main_btn_update:
-                SQLiteDatabase db=dbHelper.getWritableDatabase();
+//                SQLiteDatabase db=dbHelper.getWritableDatabase();
                 ContentValues values=new ContentValues();
                 values.put("price",99);
                 db.update("Book",values,"name=?",new String[]{"第一行代码"});
                 break;
             case R.id.activity_main_btn_delete:
-                SQLiteDatabase db=dbHelper.getWritableDatabase();
+//                SQLiteDatabase db=dbHelper.getWritableDatabase();
                 /*db.delete("Book", "pages>?", new String[]{"400"});*/
                 db.delete("Book", "pages>? and price>?", new String[]{"400","40"});
                 break;
